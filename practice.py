@@ -101,10 +101,10 @@ def get_sum_zero_pairs(numbers):
 
     for i in range(len(numbers)):
         for j in range(i + 1, len(numbers)):
-            if numbers[j] == 0:
-                pairs_list.append([numbers[j], numbers[j]])
-            elif numbers[i] + numbers[j] == 0:
+            if numbers[i] + numbers[j] == 0:
                 pairs_list.append([numbers[i], numbers[j]])
+        if numbers[i] == 0:
+            pairs_list.append([numbers[i], numbers[i]])
 
     return pairs_list
 
