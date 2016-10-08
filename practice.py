@@ -134,7 +134,46 @@ def top_chars(phrase):
 
     """
 
-    return []
+    ## initialize empty dictionary to store character counts as key:val pairs
+    character_count = {}
+
+    ## verbose first attempt at creating char_count dictionary
+    # for char in phrase.replace(" ", ""):
+    #     if char not in character_count:
+    #         character_count[char] = 0
+    #     character_count[char] += 1
+
+    ## better way to set up the dictionary!
+    for char in phrase.replace(" ", ""):
+        character_count[char] = character_count.get(char, 0) + 1
+
+    ## converts char_count dictionary into a sortable pair list
+    char_and_count_pairs = character_count.items()
+
+    ## initializes empty list for the sorted pairs
+    sorted_pairs = []
+
+    ## switches the position of key:value in each tuple in the pair list
+    ## such that now the char-count is at index 0 and the list can be sorted
+    ## by frequency, adds the new tuple to the new sorted_pairs list
+    for item in char_and_count_pairs:
+        sorted_pairs.append((item[1], item[0]))
+
+    ## sorts the list by frequency in ascending order
+    sorted_pairs.sort()
+
+    ## takes the last 1 (or 2 if a tie) item in the sorted list, which will
+    ## be the most-frequently occuring letter, and creates a top_char_list with
+    ## it.
+    ## as-is only handles potential two-way ties
+    if sorted_pairs[-1][0] == sorted_pairs[-2][0]:
+        top_char_list = [sorted_pairs[-1][1], sorted_pairs[-2][1]]
+    else:
+        top_char_list = [sorted_pairs[-1][1]]
+
+    ## returns the top_char_list (1-2 characters), sorted alphabetically
+    return sorted(top_char_list)
+
 
 #####################################################################
 # You can ignore everything below this.
