@@ -95,7 +95,18 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    return []
+    pairs_list = []
+
+    numbers = sorted(set(numbers))
+
+    for i in range(len(numbers)):
+        for j in range(i + 1, len(numbers)):
+            if numbers[j] == 0:
+                pairs_list.append([numbers[j], numbers[j]])
+            elif numbers[i] + numbers[j] == 0:
+                pairs_list.append([numbers[i], numbers[j]])
+
+    return pairs_list
 
 
 def top_chars(phrase):
