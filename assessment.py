@@ -28,8 +28,20 @@ def count_words(phrase):
         >>> print_dict(count_words("Porcupine see, porcupine do."))
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
+    ## initialize empty dictionary to track word counts as key:val pairs
+    word_count = {}
 
-    return {}
+    ## split the input phrase on spaces, iterate over the resulting list on
+    ## word by word basis
+    for word in phrase.split():
+        ## look up the value associated with word as key in dictionary;
+        ## if not there, will return 0 as default then increment by 1 for a new
+        ## value of 1 for the first occurrence of word; if it is there, the
+        ## value will be incremented by 1
+        word_count[word] = word_count.get(word, 0) + 1
+
+    ## return final word_count dictionary
+    return word_count
 
 
 def get_melon_price(melon_name):
