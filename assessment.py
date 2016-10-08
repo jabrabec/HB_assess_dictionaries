@@ -156,7 +156,24 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    ## creates source dictionary for pirate translations
+    pirate_dict = {"sir": "matey", "hotel": "fleabag inn", "student": "swabbie",
+                   "man": "matey", "professor": "foul blaggart",
+                   "restaurant": "galley", "your": "yer", "excuse": "arr",
+                   "students": "swabbies", "are": "be", "restroom": "head",
+                   "my": "me", "is": "be"}
+
+    ## initializes empty list for holding translated/untranslated words
+    new_phrase = []
+
+    ## splits phrase at whitespace, converting into a list. then iterates over
+    ## the list; if source word exists as key in pirate dictionary, replaces the
+    ## associated new value, otherwise keeps original word
+    for word in phrase.split():
+        new_phrase.append(pirate_dict.get(word, word))
+
+    ## returns translated list in string format, joined by spaces
+    return " ".join(new_phrase)
 
 
 def kids_game(names):
