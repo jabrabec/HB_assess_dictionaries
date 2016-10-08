@@ -88,8 +88,33 @@ def word_length_sorted(words):
         >>> word_length_sorted(["ok", "an", "apple", "a", "day"])
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
     """
+    ## initialize empty dictionary to track word lengths as key:val pairs
+    word_lengths = {}
 
-    return []
+    ## iterate over the input list on a word by word basis and then char by char
+    ## within the word, creating a dictionary with word as key and its length
+    ## as value
+    for word in words:
+        ## initialize empty counter/reset count for each word in words
+        count = 0
+        ## iterate over all characters being read and increment count accordingly
+        for char in word:
+            count += 1
+        ## create new dict key with empty list if count has not yet been seen
+        if count not in word_lengths:
+            word_lengths[count] = []
+        ## append the current word as new value to existing value list for this
+        ## count key in dictionary (existing value list could be empty or could
+        ## contain previously seen word(s) with the same # of characters)
+        word_lengths[count].append(word)
+
+    ## iterate over value lists for word_lengths keys and sort in place
+    for counts in word_lengths:
+        word_lengths[counts].sort()
+
+    ## return word_lengths dictionary in the form of a list of tuples; sorted()
+    ## ensures results are sorted by tuple value at index 0
+    return sorted(word_lengths.items())
 
 
 def translate_to_pirate_talk(phrase):
