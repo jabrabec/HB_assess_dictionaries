@@ -171,7 +171,7 @@ def top_chars(phrase):
     else:
         top_char_list = [sorted_pairs[-1][1]]
 
-    ## returns the top_char_list (1-2 characters), sorted alphabetically
+    ## returns the top_char_list (1-2 characters), sorted alphabetically    
     return sorted(top_char_list)
 
 
