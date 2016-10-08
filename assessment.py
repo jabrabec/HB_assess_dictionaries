@@ -63,8 +63,14 @@ def get_melon_price(melon_name):
         >>> get_melon_price('Tomato')
         'No price found'
     """
+    ## creates melon name:price dictionary for price lookup
+    melon_dict = {"Watermelon": 2.95, "Cantaloupe": 2.50, "Musk": 3.25, "Christmas": 14.25}
 
-    return 0
+    ## returns the price for a melon name, if in the dictionary, otherwise
+    ## returns 'No price found' if not present. Turns melon_name input to
+    ## .title() to account for different input possibilities and facilitate
+    ## matching to string format of dictionary keys
+    return melon_dict.get(melon_name.title(), 'No price found')
 
 
 def word_length_sorted(words):
