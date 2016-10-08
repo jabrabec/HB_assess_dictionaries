@@ -31,8 +31,11 @@ def without_duplicates(words):
         >>> sorted(without_duplicates([111111, 2, 33333, 2]))
         [2, 33333, 111111]
     """
+    ## modifies the words input from a list into a set, which will remove
+    ## duplicate values
     words = set(words)
 
+    ## returns modified word list
     return words
 
 
@@ -63,8 +66,12 @@ def find_unique_common_items(items1, items2):
         [2]
     """
 
+    ## modifies items1 and items 2 into sets to remove duplicate values;
+    ## initializes new unique_common_items list as the mathematical intersection
+    ## of these two sets.
     unique_common_items = set(items1) & set(items2)
 
+    ## returns only these unique_common_items
     return unique_common_items
 
 
@@ -95,17 +102,27 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
+    ## initializes empty pairs_list
     pairs_list = []
 
+    ## modifies numbers input list into a set to remove duplicate values and
+    ## sorts numerically
     numbers = sorted(set(numbers))
 
+    ## sets up i & j index values in order to facilitate comparison of each
+    ## individual list item to each other list item
     for i in range(len(numbers)):
         for j in range(i + 1, len(numbers)):
+            ## if items at index i and index j negate each other (sum = 0),
+            ## pair is appended to pairs_list as a nested list
             if numbers[i] + numbers[j] == 0:
                 pairs_list.append([numbers[i], numbers[j]])
+        ## handle special cases of the number 0 in the modified input list,
+        ## since it will only ever occur once and +/- sign does not apply
         if numbers[i] == 0:
             pairs_list.append([numbers[i], numbers[i]])
 
+    ## return final list of lists
     return pairs_list
 
 
@@ -171,7 +188,7 @@ def top_chars(phrase):
     else:
         top_char_list = [sorted_pairs[-1][1]]
 
-    ## returns the top_char_list (1-2 characters), sorted alphabetically    
+    ## returns the top_char_list (1-2 characters), sorted alphabetically
     return sorted(top_char_list)
 
 
