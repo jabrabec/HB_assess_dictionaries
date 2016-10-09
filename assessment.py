@@ -167,8 +167,8 @@ def translate_to_pirate_talk(phrase):
     new_phrase = []
 
     ## splits phrase at whitespace, converting into a list. then iterates over
-    ## the list; if source word exists as key in pirate dictionary, replaces the
-    ## associated new value, otherwise keeps original word
+    ## the list; if source word exists as key in pirate dictionary, replaces it
+    ## with the translated value, otherwise keeps original word
     for word in phrase.split():
         new_phrase.append(pirate_dict.get(word, word))
 
@@ -219,7 +219,47 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    ## initialize empty dictionary to hold input names
+    names_dict = {}
+
+    ## fill in dictionary keys with input names
+    for name in names:
+        if name not in names_dict:
+            names_dict[name] = []
+
+    ## fill in dictionary values by last letter of key = first letter of value
+    for key in names_dict.keys():
+        for name in names:
+            if key[-1] == name[0]:
+                names_dict[key].append(name)
+
+    ## initialize game_result list with the first name from input at index 0
+    game_result = [names[0]]
+
+    ## initialize first dictionary key equal to the first name from input
+    key = names[0]
+
+    ## continually perform the following steps so long as each key examined
+    ## in the dictionary is not paired with an empty list
+    while names_dict.get(key) != []:
+        ## set next name to be added to results as the first in the value list
+        ## for that key in dictionary
+        next_name = names_dict[key][0]
+        ## double check that this name has not already been added to the
+        ## game results; if it has remove it from this key's value list and
+        ## return to line 244
+        if next_name in game_result:
+            names_dict[key].remove(names_dict[key][0])
+        ## when the name does not already exist in game results:
+        else:
+            ## append this next name value to the game results list,
+            ## remove it from the value list of its associated key:value
+            ## pair, and reset the key for the next iteration
+            game_result.append(next_name)
+            names_dict[key].remove(next_name)
+            key = next_name
+
+    return game_result
 
 #####################################################################
 # You can ignore everything below this.
